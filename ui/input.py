@@ -1,5 +1,6 @@
 
 from entities.core import get_entity, add_entity
+from entities.lichen import make_lichen
 from entities.player import make_player, move_player
 from world import smooth_world, World, find_empty_tile
 from ui.core import UIKind, UI
@@ -11,11 +12,34 @@ def move(location, delta):
     return (x + dx, y + dy)
 
 
-def process_input_start(game, user_input):
-    game.world = World(game.world.name)
-    empty_location = find_empty_tile(game.world)
-    add_entity(game.world, "player", make_player(empty_location))
+def add_lichen(world):
+    empty_location = find_empty_tile(world)
+    lichen = make_lichen(empty_location)
+    world = add_entity(world, lichen.id, lichen)
+    return world
+
+
+def populate_world(world):
+    empty_location = find_empty_tile(world)
+    world = add_entity(world, "player", make_player(empty_location))
+
+    starting_lichen = 30
+    for i in range(starting_lichen):
+        world = add_lichen(world)
+
+    return world
+
+
+def reset_game(game):
+    world = World(game.world.name)
+    game.world = populate_world(world)
     game.uis = [UI(UIKind.play)]
+    return game
+
+
+def process_input_start(game, user_input):
+    game = reset_game(game)
+    return game
 
 
 def process_input_play(game, user_input):

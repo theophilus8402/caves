@@ -5,10 +5,15 @@ def initialize_colors():
 
     curses.start_color()
     curses.use_default_colors()
-    curses.init_pair(1, curses.COLOR_RED, curses.COLOR_BLACK)
 
     global red
+    curses.init_pair(1, curses.COLOR_RED, curses.COLOR_BLACK)
     red = curses.color_pair(1)
 
+    global green
+    curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
+    green = curses.color_pair(2)
+
 red = None
+green = None
 #red = curses.A_REVERSE

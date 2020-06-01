@@ -1,5 +1,6 @@
 
 import curses
+import logging
 
 import color
 
@@ -37,4 +38,5 @@ def main(stdscr):
 
 if __name__ == "__main__":
 
+    logging.basicConfig(filename="caves.log", level=logging.DEBUG)
     curses.wrapper(main)

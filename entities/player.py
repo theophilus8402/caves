@@ -1,4 +1,6 @@
 
+import color
+
 from coords import destination_coords
 from entities.aspects.mobile import Mobile
 from entities.aspects.digger import Digger
@@ -8,10 +10,11 @@ from tile import TileKind, get_tile, set_tile, floor
 
 class Player(Entity, Mobile, Digger):
 
-    def __init__(self, id, glyph, location):
+    def __init__(self, id, glyph, location, entity_color):
         self.id = id
         self.glyph = glyph
         self.location = location
+        self.color = entity_color
 
     def tick(self, world):
         return world
@@ -35,7 +38,7 @@ class Player(Entity, Mobile, Digger):
 
 
 def make_player(location):
-    return Player("player", "@", location)
+    return Player("player", "@", location, color.red)
 
 
 def check_tile(world, dest, tile_kind):

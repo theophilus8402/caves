@@ -38,7 +38,12 @@ def draw_ui_play(stdscr, ui, game):
     tiles = game.world.tiles
     draw_world(stdscr, vrows, vcols, start_x, start_y, end_x, end_y, tiles)
     draw_hud(stdscr, game, start_x, start_y)
-    draw_player(stdscr, (start_x, start_y), player)
+    for entity in game.world.entities.values():
+        x, y = entity.location
+        if ((start_x <= x) and (x <= end_x) and
+            (start_y <= y) and (y <= end_y)):
+            draw_entity(stdscr, (start_x, start_y), entity)
+    highlight_player(stdscr, (start_x, start_y), player)
 
 def draw_ui_win(stdscr, ui, game):
     stdscr.addstr(0, 0, "Congratulations, you win!")
@@ -86,12 +91,19 @@ def get_viewport_coords(game, center_coords, vcols, vrows):
     return (start_x, start_y, end_x, end_y)
 
 
-def draw_player(stdscr, start_coords, player):
+def draw_entity(stdscr, start_coords, entity):
     start_x, start_y = start_coords
-    player_x, player_y = player.location
-    x = player_x - start_x
-    y = player_y - start_y + 1
-    stdscr.addstr(y, x, "@", color.red)
+    entity_x, entity_y = entity.location
+    x = entity_x - start_x
+    y = entity_y - start_y + 1
+    stdscr.addstr(y, x, entity.glyph, color.red)
+
+
+def highlight_player(stdscr, start_coords, entity):
+    start_x, start_y = start_coords
+    entity_x, entity_y = entity.location
+    x = entity_x - start_x
+    y = entity_y - start_y + 1
     stdscr.move(y, x)
 
 

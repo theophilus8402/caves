@@ -1,5 +1,6 @@
 
 import abc
+import logging
 
 
 class Entity(abc.ABC):
@@ -24,6 +25,8 @@ def get_id():
 
 def add_entity(world, entity_id, entity):
     world.entities[entity_id] = entity
+    logging.debug(f"add_entity: {entity_id}, {entity}, {entity.location}")
+    return world
 
 
 def get_entity(world, entity_id):
