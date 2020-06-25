@@ -9,6 +9,7 @@ from coords import neighbors
 class World():
 
     def __init__(self, name, world_size=(160, 160), tiles=[]):
+        self.ticks = 0
         self.name = name
         self.world_width, self.world_height = world_size
         self.entities = {}

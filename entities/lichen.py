@@ -22,14 +22,9 @@ class Lichen(Entity, Destructible):
         else:
             return world
 
-    def take_damage(self, world, damage):
-        self.hp = self.hp - damage
-        if self.hp <= 0:
-            remove_entity(world, self.id)
-
 
 def should_grow():
-    return random.random() < 0.02
+    return random.random() < 0.01
 
 
 def grow(lichen, world):

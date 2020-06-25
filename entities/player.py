@@ -8,7 +8,7 @@ from entities.aspects.digger import Digger
 from entities.aspects.mobile import Mobile
 from entities.core import Entity, get_entity
 from tile import TileKind, get_tile, set_tile, floor
-from world import is_empty, get_entity_at
+from world import get_entity_at
 
 
 class Player(Entity, Mobile, Digger, Attacker):
@@ -21,15 +21,6 @@ class Player(Entity, Mobile, Digger, Attacker):
 
     def tick(self, world):
         return world
-
-    def move(self, world, dest):
-        if self.can_move(world, dest):
-            player = get_entity(world, "player")
-            player.location = dest
-        return world
-
-    def can_move(self, world, dest):
-        return is_empty(world, dest)
 
     def dig(self, world, dest):
         if self.can_dig(world, dest):
