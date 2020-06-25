@@ -24,7 +24,7 @@ def draw_ui_start(stdscr, ui, game):
     stdscr.addstr(1, 0, "Press e to win, anything else to lose.")
 
 def draw_ui_play(stdscr, ui, game):
-    stdscr.addstr(0, 0, f"Press e to win, s to smooth, anything else to lose. {game.location}")
+    stdscr.addstr(0, 0, f"Press e to win, s to smooth, anything else to lose.")
 
     cols, rows = screen_size
     vcols = cols
@@ -41,7 +41,7 @@ def draw_ui_play(stdscr, ui, game):
     for entity in game.world.entities.values():
         x, y = entity.location
         if ((start_x <= x) and (x <= end_x) and
-            (start_y <= y) and (y <= end_y)):
+            (start_y <= y) and (y <= end_y - 1)):
             draw_entity(stdscr, (start_x, start_y), entity)
     highlight_player(stdscr, (start_x, start_y), player)
 

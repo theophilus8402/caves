@@ -32,6 +32,7 @@ def populate_world(world):
 
 def reset_game(game):
     world = World(game.world.name)
+    world.tiles = smooth_world(world.tiles)
     game.world = populate_world(world)
     game.uis = [UI(UIKind.play)]
     return game

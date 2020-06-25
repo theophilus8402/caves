@@ -6,20 +6,25 @@ def offset_coords(coords, delta):
     return (x + dx, y + dy)
 
 
+dir_map = {
+    "n": (0, -1),
+    "e": (1, 0),
+    "s": (0, 1),
+    "w": (-1, 0),
+    "ne": (1, -1),
+    "se": (1, 1),
+    "sw": (-1, 1),
+    "nw": (-1, -1),
+}
 def dir_to_offset(direction):
     # convert a direction to the offset for moving 1 in that direction
-    dir_map = {
-        "n": (0, -1),
-        "e": (1, 0),
-        "s": (0, 1),
-        "w": (-1, 0),
-        "ne": (1, -1),
-        "se": (1, 1),
-        "sw": (-1, 1),
-        "nw": (-1, -1),
-    }
     return dir_map[direction]
 
 
 def destination_coords(origin, direction):
     return offset_coords(origin, dir_to_offset(direction))
+
+
+def neighbors(origin):
+    for delta in dir_map.values():
+        yield offset_coords(origin, delta)

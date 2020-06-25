@@ -29,5 +29,11 @@ def add_entity(world, entity_id, entity):
     return world
 
 
+def remove_entity(world, entity_id):
+    entity = get_entity(world, entity_id)
+    del(world.entities[entity_id])
+    logging.debug(f"remove_entity: {entity_id}, {entity}, {entity.location}")
+
+
 def get_entity(world, entity_id):
-    return world.entities[entity_id]
+    return world.entities.get(entity_id)

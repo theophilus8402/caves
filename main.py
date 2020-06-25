@@ -1,4 +1,5 @@
 
+import copy
 import curses
 import logging
 
@@ -11,6 +12,12 @@ from world import World
 from game import Game
 
 
+def tick_all(world):
+    entities = list(world.entities.values())
+    for entity in entities:
+        entity.tick(world)
+
+
 def run_game(stdscr, game):
     while len(game.uis) > 0:
 
@@ -20,6 +27,7 @@ def run_game(stdscr, game):
             user_input = game.input.pop()
             process_input(game, user_input)
         else:
+            tick_all(game.world)
             get_input(stdscr, game)
 
 
