@@ -1,9 +1,12 @@
 
+import curses
+import logging
 import math
 
 import color
 
 from entities.core import get_entity
+from entities.lichen import Lichen
 from ui.core import UIKind
 
 
@@ -15,7 +18,9 @@ def draw_hud(stdscr, game, start_x, start_y):
     hud_row = screen_height - 1
     player = get_entity(game.world, "player")
     x, y = player.location
-    hud_line = f"Loc: [{x}-{y}] start: [{start_x}-{start_y}]"
+    num_lichen = len([ent for ent in game.world.entities.values()
+                        if isinstance(ent, Lichen)])
+    hud_line = f"Loc: [{x}-{y}] start: [{start_x}-{start_y}], #: {num_lichen}, Ticks: {game.world.ticks}"
     stdscr.addstr(hud_row, 0, hud_line)
 
 
@@ -40,9 +45,12 @@ def draw_ui_play(stdscr, ui, game):
     draw_hud(stdscr, game, start_x, start_y)
     for entity in game.world.entities.values():
         x, y = entity.location
-        if ((start_x <= x) and (x <= end_x) and
+        if ((start_x <= x) and (x <= end_x - 1) and
             (start_y <= y) and (y <= end_y - 1)):
-            draw_entity(stdscr, (start_x, start_y), entity)
+            try:
+                draw_entity(stdscr, (start_x, start_y), entity)
+            except curses.error:
+                logging.critical(f"({start_x}, {start_y}) => ({end_x}, {end_y}), {entity.location}, {entity.glyph}, {entity.color}, {entity.id}")
     highlight_player(stdscr, (start_x, start_y), player)
 
 def draw_ui_win(stdscr, ui, game):
@@ -96,7 +104,7 @@ def draw_entity(stdscr, start_coords, entity):
     entity_x, entity_y = entity.location
     x = entity_x - start_x
     y = entity_y - start_y + 1
-    stdscr.addstr(y, x, entity.glyph, color.red)
+    stdscr.addstr(y, x, entity.glyph, entity.color)
 
 
 def highlight_player(stdscr, start_coords, entity):

@@ -13,6 +13,7 @@ from game import Game
 
 
 def tick_all(world):
+    world.ticks = world.ticks + 1
     entities = list(world.entities.values())
     for entity in entities:
         entity.tick(world)
