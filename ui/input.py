@@ -1,5 +1,6 @@
 
 from entities.core import get_entity, add_entity
+from entities.bunny import make_bunny
 from entities.lichen import make_lichen
 from entities.player import make_player, move_player
 from world import smooth_world, World, find_empty_tile
@@ -12,10 +13,16 @@ def move(location, delta):
     return (x + dx, y + dy)
 
 
-def add_lichen(world):
+def add_creature(world, make_creature):
     empty_location = find_empty_tile(world)
-    lichen = make_lichen(empty_location)
-    world = add_entity(world, lichen.id, lichen)
+    creature = make_creature(empty_location)
+    world = add_entity(world, creature.id, creature)
+    return world
+
+
+def add_creatures(world, make_creature, num):
+    for _ in range(num):
+        world = add_creature(world, make_creature)
     return world
 
 
@@ -23,9 +30,9 @@ def populate_world(world):
     empty_location = find_empty_tile(world)
     world = add_entity(world, "player", make_player(empty_location))
 
-    starting_lichen = 30
-    for i in range(starting_lichen):
-        world = add_lichen(world)
+    world = add_creatures(world, make_lichen, 30)
+    #world = add_creature(world, make_bunny)
+    world = add_creatures(world, make_bunny, 20)
 
     return world
 

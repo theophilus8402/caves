@@ -51,6 +51,8 @@ def draw_ui_play(stdscr, ui, game):
                 draw_entity(stdscr, (start_x, start_y), entity)
             except curses.error:
                 logging.critical(f"({start_x}, {start_y}) => ({end_x}, {end_y}), {entity.location}, {entity.glyph}, {entity.color}, {entity.id}")
+            except TypeError:
+                logging.critical(f"({start_x}, {start_y}) => ({end_x}, {end_y}), {entity.location}, {entity.glyph}, {entity.color}, {entity.id}")
     highlight_player(stdscr, (start_x, start_y), player)
 
 def draw_ui_win(stdscr, ui, game):

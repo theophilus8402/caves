@@ -16,7 +16,7 @@ class Bunny(Entity, Mobile, Destructible):
         self.hp = hp
 
     def tick(self, world):
-        pass
+        dest = find_empty_neighbor(world, self.location)
 
 
 def make_bunny(location):
