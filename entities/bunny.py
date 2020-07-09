@@ -4,6 +4,7 @@ import color
 from entities.aspects.mobile import Mobile
 from entities.aspects.destructible import Destructible
 from entities.core import Entity, get_id
+from world import find_empty_neighbor
 
 
 class Bunny(Entity, Mobile, Destructible):
@@ -17,6 +18,8 @@ class Bunny(Entity, Mobile, Destructible):
 
     def tick(self, world):
         dest = find_empty_neighbor(world, self.location)
+        world = self.move(world, dest)
+        return world
 
 
 def make_bunny(location):

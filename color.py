@@ -18,7 +18,12 @@ def initialize_colors():
     curses.init_pair(3, curses.COLOR_YELLOW, curses.COLOR_BLACK)
     yellow = curses.color_pair(3)
 
+    global white
+    curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_BLACK)
+    white = curses.color_pair(4)
+
 red = None
 green = None
 yellow = None
+white = None
 #red = curses.A_REVERSE

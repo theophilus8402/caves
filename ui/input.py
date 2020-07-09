@@ -2,6 +2,7 @@
 from entities.core import get_entity, add_entity
 from entities.bunny import make_bunny
 from entities.lichen import make_lichen
+from entities.silverfish import make_silverfish
 from entities.player import make_player, move_player
 from world import smooth_world, World, find_empty_tile
 from ui.core import UIKind, UI
@@ -31,8 +32,8 @@ def populate_world(world):
     world = add_entity(world, "player", make_player(empty_location))
 
     world = add_creatures(world, make_lichen, 30)
-    #world = add_creature(world, make_bunny)
     world = add_creatures(world, make_bunny, 20)
+    world = add_creatures(world, make_silverfish, 20)
 
     return world
 

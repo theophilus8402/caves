@@ -8,8 +8,8 @@ class Mobile():
     def move(self, world, dest):
         # move this entity to a new location
         if self.can_move(world, dest):
-            player = get_entity(world, "player")
-            player.location = dest
+            #player = get_entity(world, "player")
+            self.location = dest
         return world
 
     def can_move(self, world, dest):
