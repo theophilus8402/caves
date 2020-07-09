@@ -60,28 +60,28 @@ def process_input_play(game, user_input):
         game.uis = [UI(UIKind.play)]
 
     elif user_input == "h":
-        game.world = move_player(game.world, "w")
+        game.world = move_player("w", game.world)
         game.uis = [UI(UIKind.play)]
     elif user_input == "j":
-        game.world = move_player(game.world, "s")
+        game.world = move_player("s", game.world)
         game.uis = [UI(UIKind.play)]
     elif user_input == "k":
-        game.world = move_player(game.world, "n")
+        game.world = move_player("n", game.world)
         game.uis = [UI(UIKind.play)]
     elif user_input == "l":
-        game.world = move_player(game.world, "e")
+        game.world = move_player("e", game.world)
         game.uis = [UI(UIKind.play)]
     elif user_input == "y":
-        game.world = move_player(game.world, "nw")
+        game.world = move_player("nw", game.world)
         game.uis = [UI(UIKind.play)]
     elif user_input == "u":
-        game.world = move_player(game.world, "ne")
+        game.world = move_player("ne", game.world)
         game.uis = [UI(UIKind.play)]
     elif user_input == "b":
-        game.world = move_player(game.world, "sw")
+        game.world = move_player("sw", game.world)
         game.uis = [UI(UIKind.play)]
     elif user_input == "n":
-        game.world = move_player(game.world, "se")
+        game.world = move_player("se", game.world)
         game.uis = [UI(UIKind.play)]
 
     else:

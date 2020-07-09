@@ -4,7 +4,7 @@ from entities.core import remove_entity
 
 class Destructible():
 
-    def take_damage(self, world, damage):
+    def take_damage(self, damage, world):
         # take the given amount of damage and update the world appropriately
         self.hp = self.hp - damage
         if self.hp <= 0:

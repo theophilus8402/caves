@@ -1,9 +1,16 @@
 
-import abc
+import logging
 
-class Attacker(abc.ABC):
+from entities.aspects.destructible import is_destructible
 
-    @abc.abstractmethod
-    def attack(self, world, target):
-        # attack the target
-        pass
+
+class Attacker():
+
+    def attack(self, target, world):
+        #logging.debug(f"{self} attacking {target}")
+        if is_destructible(target):
+            dmg = 1
+            target.take_damage(dmg, world)
+        #else:
+        #    logging.debug(f"{target} is not destructible")
+

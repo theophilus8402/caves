@@ -19,7 +19,7 @@ class Silverfish(Entity, Mobile, Destructible):
         self.color = entity_color
         self.hp = hp
 
-    def can_move(self, world, dest):
+    def can_move(self, dest, world):
         return not get_entity_at(world, dest)
 
     def tick(self, world):
@@ -27,7 +27,7 @@ class Silverfish(Entity, Mobile, Destructible):
         if get_entity_at(world, dest):
             return world
         else:
-            return self.move(world, dest)
+            return self.move(dest, world)
 
 
 def make_silverfish(location):

@@ -21,7 +21,7 @@ class TestLichen():
         assert lichen.hp == 1
         w = World("main")
         w = add_entity(w, lichen.id, lichen)
-        lichen.take_damage(w, 1)
+        lichen.take_damage(1, w)
         assert lichen.hp == 0
         assert len(w.entities) == 0
 

@@ -18,7 +18,7 @@ class Bunny(Entity, Mobile, Destructible):
 
     def tick(self, world):
         dest = find_empty_neighbor(world, self.location)
-        world = self.move(world, dest)
+        world = self.move(dest, world)
         return world
 
 
