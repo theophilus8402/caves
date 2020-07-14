@@ -9,12 +9,13 @@ from world import find_empty_neighbor
 
 class Lichen(Entity, Destructible):
 
-    def __init__(self, id, glyph, location, entity_color, hp):
+    def __init__(self, id, glyph, location, entity_color, hp, max_hp):
         self.id = id
         self.glyph = glyph
         self.location = location
         self.color = entity_color
         self.hp = hp
+        self.max_hp = max_hp
 
     def tick(self, world):
         if should_grow():
@@ -36,4 +37,9 @@ def grow(lichen, world):
 
 
 def make_lichen(location):
-    return Lichen(get_id(), "F", location, color.red, 1)
+    return Lichen(id=get_id(),
+                  glyph="F",
+                  location=location,
+                  entity_color=color.red,
+                  hp=6,
+                  max_hp=6)

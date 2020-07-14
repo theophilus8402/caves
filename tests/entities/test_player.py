@@ -18,8 +18,11 @@ class TestPlayer():
 
         player.attack(lichen, w)
 
-        assert lichen.hp == 0
-        assert get_entity(w, lichen.id) == None
+        assert lichen.hp < lichen.max_hp
+        if lichen.hp == 0:
+            assert get_entity(w, lichen.id) == None
+        else:
+            assert get_entity(w, lichen.id) == lichen
 
     def test_move_player(self):
         player = make_player((1, 1))
@@ -35,9 +38,9 @@ class TestPlayer():
         w.tiles = set_tile(w.tiles, (2, 1), floor)
 
         # check to see if it attacks the lichen
-        assert lichen.hp == 1
+        assert lichen.hp == lichen.max_hp
         move_player("n", w)
-        assert lichen.hp == 0
+        assert lichen.hp < lichen.max_hp
 
         # check to see if it digs
         assert get_tile(w.tiles, (1, 2)) == wall

@@ -10,6 +10,10 @@ class Destructible():
         if self.hp <= 0:
             remove_entity(world, self.id)
 
+    @property
+    def defense_value(self):
+        return getattr(self, "_defense_value", 0)
+
 
 def is_destructible(obj):
     return issubclass(type(obj), Destructible)

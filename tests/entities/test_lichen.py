@@ -14,14 +14,14 @@ class TestLichen():
         assert lichen.glyph == "F"
         assert lichen.location == (1, 1)
         assert lichen.color == color.red
-        assert lichen.hp == 1
+        assert lichen.hp == 6
 
     def test_take_damage(self):
         lichen = make_lichen((1, 1))
-        assert lichen.hp == 1
+        assert lichen.hp == 6
         w = World("main")
         w = add_entity(w, lichen.id, lichen)
-        lichen.take_damage(1, w)
+        lichen.take_damage(6, w)
         assert lichen.hp == 0
         assert len(w.entities) == 0
 

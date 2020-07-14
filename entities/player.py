@@ -11,18 +11,27 @@ from world import get_entity_at
 
 class Player(Entity, Mobile, Digger, Attacker):
 
-    def __init__(self, id, glyph, location, entity_color):
+    def __init__(self, id, glyph, location, entity_color, hp, max_hp, attack_value):
         self.id = id
         self.glyph = glyph
         self.location = location
         self.color = entity_color
+        self.hp = hp
+        self.max_hp = max_hp
+        self._attack_value = attack_value
 
     def tick(self, world):
         return world
 
 
 def make_player(location):
-    return Player("player", "@", location, color.red)
+    return Player(id="player",
+                  glyph="@",
+                  location=location,
+                  entity_color=color.red,
+                  hp=40,
+                  max_hp=40,
+                  attack_value=10)
 
 
 def move_player(direction, world):

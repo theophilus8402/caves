@@ -12,12 +12,13 @@ from world import find_empty_neighbor, get_entity_at
 
 class Silverfish(Entity, Mobile, Destructible):
 
-    def __init__(self, id, glyph, location, entity_color, hp):
+    def __init__(self, id, glyph, location, entity_color, hp, max_hp):
         self.id = id
         self.glyph = glyph
         self.location = location
         self.color = entity_color
         self.hp = hp
+        self.max_hp = max_hp
 
     def can_move(self, dest, world):
         return not get_entity_at(world, dest)
@@ -31,4 +32,9 @@ class Silverfish(Entity, Mobile, Destructible):
 
 
 def make_silverfish(location):
-    return Silverfish(get_id(), "~", location, color.white, 1)
+    return Silverfish(id=get_id(),
+                      glyph="~",
+                      location=location,
+                      entity_color=color.white,
+                      hp=15,
+                      max_hp=15)

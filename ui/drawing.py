@@ -17,10 +17,11 @@ def draw_hud(stdscr, game, start_x, start_y):
     screen_width, screen_height = screen_size
     hud_row = screen_height - 1
     player = get_entity(game.world, "player")
+    hp, max_hp = player.hp, player.max_hp
     x, y = player.location
     num_lichen = len([ent for ent in game.world.entities.values()
                         if isinstance(ent, Lichen)])
-    hud_line = f"Loc: [{x}-{y}] start: [{start_x}-{start_y}], #: {num_lichen}, Ticks: {game.world.ticks}"
+    hud_line = f"HP: {hp}/{max_hp} Loc: [{x}-{y}] start: [{start_x}-{start_y}], #: {num_lichen}, Ticks: {game.world.ticks}"
     stdscr.addstr(hud_row, 0, hud_line)
 
 
