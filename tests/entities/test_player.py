@@ -13,13 +13,13 @@ class TestPlayer():
         player = make_player((1, 2))
         w = World("main")
 
-        add_entity(w, lichen.id, lichen)
-        add_entity(w, "player", player)
+        w = add_entity(w, lichen.id, lichen)
+        w = add_entity(w, "player", player)
 
         player.attack(lichen, w)
 
         assert lichen.hp < lichen.max_hp
-        if lichen.hp == 0:
+        if lichen.hp <= 0:
             assert get_entity(w, lichen.id) == None
         else:
             assert get_entity(w, lichen.id) == lichen

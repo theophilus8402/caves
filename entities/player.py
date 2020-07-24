@@ -5,11 +5,12 @@ from coords import destination_coords
 from entities.aspects.attacker import Attacker
 from entities.aspects.digger import Digger
 from entities.aspects.mobile import Mobile
+from entities.aspects.receiver import Receiver
 from entities.core import Entity, get_entity
 from world import get_entity_at
 
 
-class Player(Entity, Mobile, Digger, Attacker):
+class Player(Entity, Mobile, Digger, Attacker, Receiver):
 
     def __init__(self, id, glyph, location, entity_color, hp, max_hp, attack_value):
         self.id = id
