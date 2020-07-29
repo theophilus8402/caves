@@ -3,7 +3,7 @@ import logging
 import random
 
 from entities.aspects.destructible import is_destructible
-
+from entities.aspects.receiver import send_message
 
 class Attacker():
 
@@ -11,6 +11,10 @@ class Attacker():
         if is_destructible(target):
             dmg = get_damage(self, target, world)
             target.take_damage(dmg, world)
+            send_message(self, "You strike the {target} for {dmg} damage!",
+                            {"target": target.name, "dmg": dmg}, world)
+            send_message(target, "The {attacker} strikes you for {dmg} damage!",
+                            {"attacker": self.name, "dmg": dmg}, world)
 
     @property
     def attack_value(self):

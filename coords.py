@@ -28,3 +28,24 @@ def destination_coords(origin, direction):
 def neighbors(origin):
     for delta in dir_map.values():
         yield offset_coords(origin, delta)
+
+
+def get_entities_around(world, coords, radius=1):
+    return [ent for ent in world.entities.values()
+                if radial_distance(coords, ent.location) <= radius]
+
+
+def radial_distance(coords1, coords2):
+    """
+    The radial distance should look like this:
+    3333333
+    3222223
+    3211123
+    3210123
+    3211123
+    3222223
+    3333333
+    """
+    x1, y1 = coords1
+    x2, y2 = coords2
+    return max(abs(x1 - x2), abs(y1 - y2))

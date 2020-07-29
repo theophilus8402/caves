@@ -12,8 +12,9 @@ from world import get_entity_at
 
 class Player(Entity, Mobile, Digger, Attacker, Receiver):
 
-    def __init__(self, id, glyph, location, entity_color, hp, max_hp, attack_value):
+    def __init__(self, id, name, glyph, location, entity_color, hp, max_hp, attack_value):
         self.id = id
+        self.name = name
         self.glyph = glyph
         self.location = location
         self.color = entity_color
@@ -27,6 +28,7 @@ class Player(Entity, Mobile, Digger, Attacker, Receiver):
 
 def make_player(location):
     return Player(id="player",
+                  name="player",
                   glyph="@",
                   location=location,
                   entity_color=color.red,

@@ -1,5 +1,5 @@
 
-from entities.aspects.receiver import send_message
+from entities.aspects.receiver import send_message, send_message_nearby
 from entities.core import add_entity
 from entities.lichen import make_lichen
 from entities.player import make_player
@@ -18,4 +18,16 @@ class TestReceiver():
 
         assert len(player.messages) == 0
         send_message(player, "The Lichen grows at {coord}.", {"coord":"(1, 1)"}, w)
+        assert len(player.messages) == 1
+
+    def test_send_message_nearby(self):
+        lichen = make_lichen((1, 1))
+        player = make_player((1, 2))
+
+        w = World("world")
+        add_entity(w, lichen.id, lichen)
+        add_entity(w, "player", player)
+
+        assert len(player.messages) == 0
+        send_message_nearby(player.location, "AAAAHHHH!!!", w)
         assert len(player.messages) == 1

@@ -9,8 +9,9 @@ from world import find_empty_neighbor
 
 class Bunny(Entity, Mobile, Destructible):
 
-    def __init__(self, id, glyph, location, entity_color, hp, max_hp):
+    def __init__(self, id, name, glyph, location, entity_color, hp, max_hp):
         self.id = id
+        self.name = name
         self.glyph = glyph
         self.location = location
         self.color = entity_color
@@ -25,6 +26,7 @@ class Bunny(Entity, Mobile, Destructible):
 
 def make_bunny(location):
     return Bunny(id=get_id(),
+                 name="bunny",
                  glyph="v",
                  location=location,
                  entity_color=color.yellow,

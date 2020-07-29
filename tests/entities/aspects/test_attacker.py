@@ -16,6 +16,7 @@ class TestAttacker():
 
         assert lichen.hp == lichen.max_hp
         player.attack(lichen, w)
+        assert len(player.messages) == 1
         assert lichen.hp < lichen.max_hp
 
     def test_attack_value(self):

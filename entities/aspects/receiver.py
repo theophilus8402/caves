@@ -1,5 +1,5 @@
 
-#from world import get_entities_around
+from coords import get_entities_around
 
 
 class Receiver():
@@ -18,3 +18,9 @@ class Receiver():
 def send_message(entity, message, args, world):
     if issubclass(type(entity), Receiver):
         entity.receive_message(message.format(**args), world)
+
+
+def send_message_nearby(coords, message, world):
+    entities = get_entities_around(world, coords, radius=7)
+    for entity in entities:
+        send_message(entity, message, {}, world)
